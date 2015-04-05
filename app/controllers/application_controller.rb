@@ -83,6 +83,7 @@ class ApplicationController < ActionController::Base
     end
 
     result.delete_if {|k, v| v < 2}
+    result.sort_by {|k, v| v}.reverse
   end
 
 
