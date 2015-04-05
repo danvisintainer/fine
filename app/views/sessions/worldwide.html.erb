@@ -1,14 +1,64 @@
 <%= include_gon %>
-<%= @tweets %>
 
 <style type="text/css">    
 #cloud{
 width: 100%;
 height:500px;
 }
+#canvas-holder{
+        width:240px;
+      }
+
+.doughnut-legend li span {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 7px;
+  float: left;
+  margin-top: 4px;
+  margin-right: 8px;
+}
+
+.doughnut-legend {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  margin-top : 20px;
+
+}
+
+.doughnut-legend li {
+  margin-bottom : 4px;
+}
+
+.doughnut-legend li:first-letter {
+  text-transform: capitalize;
+}
+
+.comm-how {
+  display: inline-block;
+  float : left;
+  color : #979797;
+  width : 25px;
+  text-align: right;
+  margin-right : 10px;
+}
+
 </style>
 
-<div id="surrounding_div" style="width:100%;height:500px">
-<canvas id="cloud">
-</canvas>
-</div>
+<center>
+  <div id="surrounding_div" style="width:100%;height:500px">
+    <canvas id="cloud">
+    </canvas>
+  </div>
+
+ <div class="centered comm-center">
+  <div id="chart">
+    <div id="canvas-holder">
+        <canvas id="myChart" width="500" height="500"></canvas>
+    </div>
+    <div id="my-doughnut-legend">
+    </div> 
+  </div>
+</center>
