@@ -8,10 +8,17 @@ $(function() {
 
   canvas.width  = div.offsetWidth;
 
-  WordCloud($('#cloud')[0], { list: gon.tweets, gridSize: Math.round(16 * $('#cloud').width() / 1024),
+  var data = [];
+
+  for (var i in gon.tweets){
+    data.push([i, gon.tweets[i]]);
+  }
+
+  WordCloud($('#cloud')[0], { list: data, gridSize: Math.round(16 * $('#cloud').width() / 1024),
     weightFactor: function (size) {
-      return Math.pow(size, 2.3) * $('#cloud').width() / 1024;
+      return Math.pow(size, 1.6) * $('#cloud').width() / 1024;
     },
     fontFamily: 'Times, serif',
     rotateRatio: 0.5} );
+
 });

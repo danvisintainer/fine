@@ -44,8 +44,6 @@ class FetchTweets
 
       next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b/i) || a[word_index].nil? # remove invalid words
 
-      # binding.pry
-
       puts "Adding #{a[word_index]}"
       Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
     end

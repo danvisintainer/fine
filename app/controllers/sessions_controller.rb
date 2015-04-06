@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
   def worldwide
-    gon.tweets = get_matching_tweets
+    gon.tweets = Tweet.group(:feeling).count
   end
 end
