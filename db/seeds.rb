@@ -7,8 +7,13 @@
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
 require 'twitter'
+require 'pry'
 
 class FetchTweets
+
+  def call
+    get_matching_tweets
+  end
 
   def client
     @client ||= Twitter::REST::Client.new do |config|
@@ -27,8 +32,9 @@ class FetchTweets
     end
 
     r.each do |t|
-      puts "(feel) Processing: [#{t.full_text}]"
-      a = t.full_text.downcase.gsub!(/[^a-z\s]/i, '').split
+      puts "Processing: [#{t.full_text}]"
+      puts "Splitting #{t.full_text.downcase.gsub(/[^a-z\s]/i, '')}"
+      a = t.full_text.downcase.gsub(/[^a-z\s]/i, '').split
       next if !a.include?("feel")
       word_index = a.index("feel") + 1
       
@@ -38,11 +44,13 @@ class FetchTweets
 
       next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b/i) || a[word_index].nil? # remove invalid words
 
-      binding.pry
+      # binding.pry
 
-      Tweet.create()
+      puts "Adding #{a[word_index]}"
+      Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
     end
 
+    puts "Tweet fetch completed without errors."
   end
 
 end

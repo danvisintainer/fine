@@ -17,7 +17,7 @@ ActiveRecord::Schema.define(version: 20150406003559) do
   enable_extension "plpgsql"
 
   create_table "tweets", force: :cascade do |t|
-    t.integer  "twitter_id"
+    t.string   "twitter_id"
     t.string   "text"
     t.string   "user"
     t.string   "uri"
