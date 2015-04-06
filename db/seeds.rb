@@ -22,14 +22,13 @@ class FetchTweets
     r = client.search("\"i feel\"", result_type: "recent").take(200)
 
     r.delete_if do |t|
-      !!(t =~ /(can't feel)|(RT @)|(how i feel)|(what i feel)|(way i feel)|(feel like)|(feel left)|(feel how)|(feel from)|(feel now)|(feel and)|(feel he)|(feel with)|(feel she)|(feel no)|(feel we)|(feel but)|(feel they)|(feel him)|(feel her)|(feel it)|(feel you)|(feel back)|(feel u)|(feel ya)|(feel for)|(feel my)|(feel our)|(feel their)|(feel out)|(feel that)|(feel this)|(feel the)|(feel self)|(feel when)|(feel than)|(feel i)|(feel what)|(feel a)|(feel to)|(should i feel)|(feel\.)|(feel \.)/i) ||
-      !!!(t =~ /feel\b/i)
+      !!(t.full_text =~ /(can't feel)|(RT @)|(how i feel)|(what i feel)|(way i feel)|(feel like)|(feel left)|(feel how)|(feel from)|(feel now)|(feel and)|(feel he)|(feel with)|(feel she)|(feel no)|(feel we)|(feel but)|(feel they)|(feel him)|(feel her)|(feel it)|(feel you)|(feel back)|(feel u)|(feel ya)|(feel for)|(feel my)|(feel our)|(feel their)|(feel out)|(feel that)|(feel this)|(feel the)|(feel self)|(feel when)|(feel than)|(feel i)|(feel what)|(feel a)|(feel to)|(should i feel)|(feel\.)|(feel \.)/i) ||
+      !!!(t.full_text =~ /feel\b/i)
     end
 
     r.each do |t|
-      puts "(feel) Processing: [#{t}]"
-      t.gsub!(/[^a-z\s]/i, '')
-      a = t.downcase.split
+      puts "(feel) Processing: [#{t.full_text}]"
+      a = t.full_text.downcase.gsub!(/[^a-z\s]/i, '').split
       next if !a.include?("feel")
       word_index = a.index("feel") + 1
       
@@ -39,7 +38,9 @@ class FetchTweets
 
       next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b/i) || a[word_index].nil? # remove invalid words
 
-      result[a[word_index]] = 1
+      binding.pry
+
+      Tweet.create()
     end
 
   end
