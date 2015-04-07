@@ -48,6 +48,7 @@ class FetchTweets
       Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
     end
 
+    Tweet.destroy_all(['created_at < ?', 8.days.ago])
     puts "Tweet fetch completed without errors."
   end
 
