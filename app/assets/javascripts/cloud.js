@@ -14,11 +14,16 @@ $(function() {
     data.push([i, gon.tweets[i]]);
   }
 
-  WordCloud($('#cloud')[0], { list: data, gridSize: Math.round(16 * $('#cloud').width() / 1024),
+  WordCloud($('#cloud')[0], {
+    list: data,
+    gridSize: Math.round(16 * $('#cloud').width() / 1024),
     weightFactor: function (size) {
-      return Math.pow(size, 1.6) * $('#cloud').width() / 1024;
+      return Math.pow(size, 1.5) * $('#cloud').width() / 1024;
     },
     fontFamily: 'Times, serif',
-    rotateRatio: 0.5} );
+    rotateRatio: 0.5,
+    click: function(item, dimension, event){
+      console.log("Clicked on " + item);
+    }} );
 
 });
