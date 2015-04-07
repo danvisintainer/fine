@@ -23,7 +23,7 @@ $(function() {
     fontFamily: 'Times, serif',
     rotateRatio: 0.5,
     click: function(item, dimension, event){
-      console.log("Clicked on " + item);
+      window.location.replace('/word/' + item[0]);
     }} );
 
 });

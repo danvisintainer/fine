@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
 
   root to: 'sessions#worldwide'
+
+  get '/word/:word', to: 'sessions#show_word'
   
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
