@@ -42,7 +42,7 @@ class FetchTweets
         word_index += 1
       end
 
-      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b/i) || a[word_index].nil? # remove invalid words
+      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\bmost\b/i) || a[word_index].nil? # remove invalid words
 
       puts "Adding #{a[word_index]}"
       Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
