@@ -44,17 +44,17 @@ class FetchTweets
 
       next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\blol\b/i) || a[word_index].nil? # remove invalid words
 
-      puts "Adding #{a[word_index]}"
-
-      if !!(a[word_index] =~ /happy|blessed|great|good|better|amazing|fantastic|warm|special|loved|young|fine|clean|pretty|new|encouraged/)
+      if !!(a[word_index] =~ /happy|\bbless|great|good|better|amazing|fantastic|warm|special|\blove|young|fine|clean|pretty|new|encouraged|\bon\b|right|comfortable|productive|determined|\brespect/)
         polarity = 'P'
-      elsif !!(a[word_index] =~ /bad|terrible|awful|horrible|cold|defeated|discouraged|disgusting|lost|alone|old|nervous|ashamed|guilty|sorry|stupid|depressed|hungover/)
+      elsif !!(a[word_index] =~ /bad|terrible|awful|horrible|cold|defeated|discouraged|disgusting|lost|alone|old|nervous|ashamed|\bshame|guilty|sorry|stupid|depressed|hungover|off|dumb|gross|uncomfortable|worse|miserable|weird|useless|\bdisrespect|cheated|tricked|betrayed|low|drained/)
         polarity = 'N'
       else
         polarity = 'U'
       end
         
-      Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
+      puts "Adding #{polarity}: #{a[word_index]}"
+      
+      Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index], polarity: polarity)
     end
 
     Tweet.destroy_all(['created_at < ?', 8.days.ago])
