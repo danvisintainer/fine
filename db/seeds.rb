@@ -38,14 +38,23 @@ class FetchTweets
       next if !a.include?("feel")
       word_index = a.index("feel") + 1
       
-      while !!(a[word_index] =~ /so\b|very\b|really\b|rly\b|fucking\b|fuckin\b|extremely\b|completely\b|some\b|as\b|more\b|kinda\b|even\b|somewhat\b|way\b|damn\b|fully\b|(a bit)\b|\bso+\b|\b[a-z]\b|much\b/i) && word_index <= a.length
+      while !!(a[word_index] =~ /so\b|very\b|really\b|rly\b|fucking\b|fuckin\b|extremely\b|completely\b|some\b|as\b|more\b|kinda\b|even\b|somewhat\b|way\b|damn\b|fully\b|personally\b|(a bit)\b|\bso+\b|\b[a-z]\b|much\b/i) && word_index <= a.length
         word_index += 1
       end
 
-      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\bmost\b/i) || a[word_index].nil? # remove invalid words
+      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\blol\b/i) || a[word_index].nil? # remove invalid words
 
-      puts "Adding #{a[word_index]}"
-      Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
+      if !!(a[word_index] =~ /happy|go+d|\bbless|proud|great|good|better|amazing|fantastic|warm|special|\blove|young|fine|clean|pretty|new|encouraged|\bon\b|right|comfortable|productive|determined|\brespect|\bsmart|\bhonor|\bpeace|\bsuper|safe|free|complete|\bsuccess/i)
+        polarity = 'P'
+      elsif !!(a[word_index] =~ /bad|sad|\bsick|terrible|awful|horrible|cold|defeated|discouraged|\bdisgust|lost|alone|old|nervous|ashamed|\bshame|guilty|sorry|stupid|depressed|hungover|off|dumb|gross|uncomfortable|worse|miserable|weird|useless|\bdisrespect|cheated|tricked|betrayed|low|drained|fat|\bshit|empty|awkward|mean|lonely/i)
+        polarity = 'N'
+      else
+        polarity = 'U'
+      end
+        
+      puts "Adding #{polarity}: #{a[word_index]}"
+      
+      Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index], polarity: polarity)
     end
 
     Tweet.destroy_all(['created_at < ?', 8.days.ago])
