@@ -22,6 +22,7 @@ ActiveRecord::Schema.define(version: 20150406003559) do
     t.string   "user"
     t.string   "uri"
     t.string   "feeling"
+    t.string   "polarity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

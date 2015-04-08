@@ -6,6 +6,7 @@ class CreateTweets < ActiveRecord::Migration
       t.string :user
       t.string :uri
       t.string :feeling
+      t.string :polarity
 
       t.timestamps null: false
     end
