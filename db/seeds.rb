@@ -38,18 +38,20 @@ class FetchTweets
       next if !a.include?("feel")
       word_index = a.index("feel") + 1
       
-      while !!(a[word_index] =~ /so\b|very\b|really\b|rly\b|fucking\b|fuckin\b|extremely\b|completely\b|some\b|as\b|more\b|kinda\b|even\b|somewhat\b|way\b|damn\b|fully\b|(a bit)\b|\bso+\b|\b[a-z]\b|much\b/i) && word_index <= a.length
+      while !!(a[word_index] =~ /so\b|very\b|really\b|rly\b|fucking\b|fuckin\b|extremely\b|completely\b|some\b|as\b|more\b|kinda\b|even\b|somewhat\b|way\b|damn\b|fully\b|personally\b|(a bit)\b|\bso+\b|\b[a-z]\b|much\b/i) && word_index <= a.length
         word_index += 1
       end
 
-      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b/i) || a[word_index].nil? # remove invalid words
+      next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\blol\b/i) || a[word_index].nil? # remove invalid words
 
       puts "Adding #{a[word_index]}"
 
-      if !!(a[word_index] =~ /happy|blessed|great|good|better|amazing|fantastic/)
+      if !!(a[word_index] =~ /happy|blessed|great|good|better|amazing|fantastic|warm|special|loved|young|fine|clean|pretty|new|encouraged/)
         polarity = 'P'
-      elsif !!(a[word_index] =~ /bad|terrible|awful|/)
+      elsif !!(a[word_index] =~ /bad|terrible|awful|horrible|cold|defeated|discouraged|disgusting|lost|alone|old|nervous|ashamed|guilty|sorry|stupid|depressed|hungover/)
         polarity = 'N'
+      else
+        polarity = 'U'
       end
         
       Tweet.create(twitter_id: t.id.to_s, text: t.full_text, user: t.user.screen_name, uri: t.uri.to_s, feeling: a[word_index])
