@@ -44,9 +44,9 @@ class FetchTweets
 
       next if !!(a[word_index] =~ /\@|http|\brn\b|\bon\b|\band\b|\bdo\b|\bwill\b|\blol\b/i) || a[word_index].nil? # remove invalid words
 
-      if !!(a[word_index] =~ /happy|\bbless|great|good|better|amazing|fantastic|warm|special|\blove|young|fine|clean|pretty|new|encouraged|\bon\b|right|comfortable|productive|determined|\brespect/)
+      if !!(a[word_index] =~ /happy|go+d|\bbless|proud|great|good|better|amazing|fantastic|warm|special|\blove|young|fine|clean|pretty|new|encouraged|\bon\b|right|comfortable|productive|determined|\brespect|\bsmart|\bhonor|\bpeace|\bsuper|safe|free|complete|\bsuccess/i)
         polarity = 'P'
-      elsif !!(a[word_index] =~ /bad|terrible|awful|horrible|cold|defeated|discouraged|disgusting|lost|alone|old|nervous|ashamed|\bshame|guilty|sorry|stupid|depressed|hungover|off|dumb|gross|uncomfortable|worse|miserable|weird|useless|\bdisrespect|cheated|tricked|betrayed|low|drained/)
+      elsif !!(a[word_index] =~ /bad|sad|\bsick|terrible|awful|horrible|cold|defeated|discouraged|\bdisgust|lost|alone|old|nervous|ashamed|\bshame|guilty|sorry|stupid|depressed|hungover|off|dumb|gross|uncomfortable|worse|miserable|weird|useless|\bdisrespect|cheated|tricked|betrayed|low|drained|fat|\bshit|empty|awkward|mean|lonely/i)
         polarity = 'N'
       else
         polarity = 'U'
