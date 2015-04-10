@@ -1,9 +1,16 @@
+<%= include_gon %>
 <center><h1>feeling <%= @word %></h1>
+
+<canvas id="line-chart" width="400" height="400"></canvas>
+
+<script>
+  showPastWeek(gon.this_past_week)
+</script>
 
 <% @word_list.each do |tweet| %>
   <% begin  %>
     <% puts "Processing ID: #{tweet.twitter_id}"  %>
-    <%= @client.oembed(tweet.twitter_id).html.html_safe %>
+
   <% rescue Twitter::Error::NotFound => error %>
   <% end -%>
 <% end -%>
