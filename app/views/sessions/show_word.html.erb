@@ -10,7 +10,7 @@
 <% @word_list.each do |tweet| %>
   <% begin  %>
     <% puts "Processing ID: #{tweet.twitter_id}"  %>
-
+    <%= @client.oembed(tweet.twitter_id).html.html_safe %>
   <% rescue Twitter::Error::NotFound => error %>
   <% end -%>
 <% end -%>
