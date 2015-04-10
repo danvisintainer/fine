@@ -1,6 +1,9 @@
 <%= include_gon %>
 <%= @tweets %>
 
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="d3.layout.cloud.js"></script>
+
 <style type="text/css">    
 #cloud{
 width: 100%;
@@ -8,9 +11,7 @@ height:100%;
 }
 </style>
 
-<div id="surrounding_div" style="width:100%;height:750px">
-<canvas id="cloud">
-</canvas>
+<div id="d3Cloud">
 </div>
 
 <div id="polarity">
@@ -22,3 +23,4 @@ height:100%;
     <h2>People are equally positive AND negative today. Wait, what?</h2>
   <% end %>
 </div>
+
