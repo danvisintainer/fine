@@ -12,8 +12,6 @@ var feelings = [];
       return {text: d[0], size: d[1] * 10};
     });
 
-
-
   // var fontSize = d3.scale.log().range([10, 100]);
 
 // var layout = cloud()
@@ -40,45 +38,66 @@ var feelings = [];
     .on("end", draw)
     .start();
 
-    function draw(words) {
+    // function draw(words) {
+      // scale = bounds ? Math.min(
+      // w / Math.abs(bounds[1].x - w / 2),
+      // w / Math.abs(bounds[0].x - w / 2),
+      // h / Math.abs(bounds[1].y - h / 2),
+      // h / Math.abs(bounds[0].y - h / 2)) / 2 : 1;
+  // words = data;
+  // debugger;
+  // var text = d3.select("div#d3Cloud")
+  //     .data(words, function(d) { return d.text.toLowerCase(); });
+  // text.transition()
+  //     .duration(1000)
+  //     .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
+  //     .style("font-size", function(d) { return d.size + "px"; });
+  // text.enter().append("text")
+  //     .attr("text-anchor", "middle")
+  //     .attr("transform", function(d) { return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")"; })
+  //     .style("font-size", "1px")
+  //   .transition()
+  //     .duration(1000)
+  //     .style("font-size", function(d) { return d.size + "px"; });
+  // text.style("font-family", function(d) { return d.font; })
+  //     .style("fill", function(d) { return fill(d.text.toLowerCase()); })
+  //     .text(function(d) { return d.text; });
+  // var exitGroup = background.append("g")
+  //     .attr("transform", vis.attr("transform"));
+  // var exitGroupNode = exitGroup.node();
+  // text.exit().each(function() {
+  //   exitGroupNode.appendChild(this);
+  // });
+  // exitGroup.transition()
+  //     .duration(1000)
+  //     .style("opacity", 1e-6)
+  //     .remove();
+  // vis.transition()
+  //     .delay(1000)
+  //     .duration(750)
+  //     .attr("transform", "translate(" + [w >> 1, h >> 1] + ")scale(" + scale + ")");
+  // }
+
+  function draw(words) {
+    // debugger;
     d3.select("div#d3Cloud").append("svg")
-    .attr('width', 1900)
-    .attr('height', 600)
-    // .append('g')
-    .selectAll('text')
-    .data(words)
-    .enter().append('text')
-    .style('font-size', function(d) { return d.size + 'px'; })
-    .style('font-family', "Impact")
-    .style('fill', function(d, i) { return fill(i); })
-    .attr('text-anchor', 'middle')
-    .style("margin-left", function(d) {return d.size + "px"})
-    .attr('transform', function(d) { return 'translate(' + [d.x, d.y] + ')rotate(' + d.rotate + ')'; })
-    .text(function(d) { return d.text; })
+      .attr("width", window.innerWidth)
+      .attr("height", (window.innerHeight * 0.75))
+    .append("g")
+      .attr("transform", "translate(" + (window.innerWidth / 2) + ", " + ((window.innerHeight * 0.75) / 2) + ")")
+    .selectAll("text")
+      .data(words)
+    .enter().append("text")
+      .style("font-size", function(d) { return d.size + "px"; })
+      .style("font-family", "Impact")
+      .style("fill", function(d, i) { return fill(i); })
+      .attr("text-anchor", "middle")
+      .attr("transform", function(d) {
+        return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
+      })
+      .text(function(d) { return d.text; })
       .on("click", function(d) {
         window.location.replace('/word/' + d.text);
       });
   }
-
-  // function draw(words) {
-  //   d3.select("div#d3Cloud").append("svg")
-  //     .attr("width", 750)
-  //     .attr("height", 500)
-  //   .append("g")
-  //     .attr("transform", "translate(150,150)")
-  //   .selectAll("text")
-  //     .data(words)
-  //   .enter().append("text")
-  //     .style("font-size", function(d) { return d.size + "px"; })
-  //     .style("font-family", "Impact")
-  //     .style("fill", function(d, i) { return fill(i); })
-  //     .attr("text-anchor", "middle")
-  //     .attr("transform", function(d) {
-  //       return "translate(" + [d.x, d.y] + ")rotate(" + d.rotate + ")";
-  //     })
-  //     .text(function(d) { return d.text; })
-  //     .on("click", function(d) {
-  //       window.location.replace('/word/' + d.text);
-  //     });
-  // }
 });
