@@ -26,7 +26,11 @@ class SessionsController < ApplicationController
     gon.this_past_week = this_past_week
   end
 
-  def polarity
+  def list
     
+  end
+
+  def polarity
+
   end
 end

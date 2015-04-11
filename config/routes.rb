@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/cloud/', to: 'sessions#worldwide'
   post '/cloud', to: 'sessions#worldwide'
 
+  get '/list/', to: 'sessions#worldwide'
+  post '/list', to: 'sessions#worldwide'
+
   get '/polarity', to: 'sessions#polarity'
 
   get '/word/:word', to: 'sessions#show_word'
