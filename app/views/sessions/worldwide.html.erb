@@ -14,6 +14,14 @@ height:100%;
 <div id="d3Cloud">
 </div>
 
+
+<center>
+  <%= form_tag("/cloud/") do %> 
+  Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
+  <%= submit_tag "Go" %>
+  <% end %>
+</center>
+
 <div id="polarity">
   <% if @positive_count > @negative_count %>
     <h2>So far, people are feeling positive today!</h2>

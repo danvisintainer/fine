@@ -1,12 +1,11 @@
 class SessionsController < ApplicationController
 
   def worldwide
-    binding.pry
     # gon.tweets = Tweet.group(:feeling).count
 
     params["days"] = 0 if params["days"].nil?
-
-    gon.tweets = Tweet.where("DATE(created_at) <= ?", Date.today - params["days"]).group(:feeling).count
+    @days_count = params["days"]
+    gon.tweets = Tweet.where("DATE(created_at) <= ?", Date.today - @days_count).group(:feeling).count
 
     @today_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @positive_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).where(polarity: "P").count
