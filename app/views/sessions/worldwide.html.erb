@@ -32,13 +32,3 @@ height:100%;
   <% end %>
 </center>
 
-<div id="polarity">
-  <% if @positive_count > @negative_count %>
-    <h2>So far, people are feeling positive today!</h2>
-  <% elsif @positive_count < @negative_count %>
-    <h2>So far, people are feeling negative today...</h2>
-  <% else %>
-    <h2>People are equally positive AND negative today. Wait, what?</h2>
-  <% end %>
-</div>
-
