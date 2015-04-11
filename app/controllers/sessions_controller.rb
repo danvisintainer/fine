@@ -40,13 +40,13 @@ class SessionsController < ApplicationController
     for i in 0..6
       this_past_week << {
         date: (Date.today - i).strftime('%a'),
-        positive: Tweet.where("DATE(created_at) >= ? AND polarity = ?", Date.today - i, 'P').count,
-        negative: Tweet.where("DATE(created_at) >= ? AND polarity = ?", Date.today - i, 'N').count,
-        unknown: Tweet.where("DATE(created_at) >= ? AND polarity = ?", Date.today - i, 'U').count
+        positive: Tweet.where("DATE(created_at) = ? AND polarity = ?", Date.today - i, 'P').count,
+        negative: Tweet.where("DATE(created_at) = ? AND polarity = ?", Date.today - i, 'N').count,
+        unknown: Tweet.where("DATE(created_at) = ? AND polarity = ?", Date.today - i, 'U').count
       }
     end
 
-    gon.this_past_week = this_past_week
+    gon.this_past_week = this_past_week.reverse
 
   end
 end
