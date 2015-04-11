@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   get '/cloud/', to: 'sessions#worldwide'
   post '/cloud', to: 'sessions#worldwide'
 
+  get '/polarity', to: 'sessions#polarity'
+
   get '/word/:word', to: 'sessions#show_word'
   
   # The priority is based upon order of creation: first created -> highest priority.
