@@ -27,7 +27,10 @@ class SessionsController < ApplicationController
   end
 
   def list
-    
+    params["days_count"] = 0 if params["days_count"].nil?
+    @days_count = params["days_count"].to_i
+
+    @tweets = (Tweet.where("DATE(created_at) >= ?", Date.today - @days_count).group(:feeling).count).sort_by { |k, v| v }.reverse
   end
 
   def polarity
