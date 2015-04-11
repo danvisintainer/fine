@@ -3,9 +3,10 @@ class SessionsController < ApplicationController
   def worldwide
     # gon.tweets = Tweet.group(:feeling).count
 
-    params["days"] = 0 if params["days"].nil?
-    @days_count = params["days"]
-    gon.tweets = Tweet.where("DATE(created_at) <= ?", Date.today - @days_count).group(:feeling).count
+    params["days_count"] = 0 if params["days_count"].nil?
+    @days_count = params["days_count"].to_i
+
+    gon.tweets = Tweet.where("DATE(created_at) >= ?", Date.today - @days_count).group(:feeling).count
 
     @today_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).count
     @positive_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).where(polarity: "P").count
