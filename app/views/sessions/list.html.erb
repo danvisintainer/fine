@@ -1,0 +1,16 @@
+<div id="table_container">
+  <table id="list-table">
+    <thead>
+      <tr>
+        <th>feeling</th>
+        <th>count</th>
+      </tr>
+    </thead>
+    <% @tweets.each do |t| %>
+      <tr>
+        <td><%= link_to t.first, "/word/#{t.first}" %></td>
+        <td><%= t.last %></td>
+      </tr>
+    <% end -%>
+  </table>
+</div>
