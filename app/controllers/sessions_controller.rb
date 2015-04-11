@@ -1,6 +1,7 @@
 class SessionsController < ApplicationController
 
   def worldwide
+    binding.pry
     gon.tweets = Tweet.group(:feeling).count
 
     @today_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).count
