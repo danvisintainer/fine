@@ -8,6 +8,13 @@
   </h2>
 </center>
 
+<center>
+  <%= form_tag("/list/") do %> 
+  Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
+  <%= submit_tag "Go" %>
+  <% end %>
+</center>
+
 <div id="table_container">
   <table id="list-table">
     <thead>
@@ -25,9 +32,3 @@
   </table>
 </div>
 
-<center>
-  <%= form_tag("/list/") do %> 
-  Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
-  <%= submit_tag "Go" %>
-  <% end %>
-</center>
