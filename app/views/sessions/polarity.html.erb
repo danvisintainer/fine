@@ -1,3 +1,5 @@
+<%= include_gon %>
+
 <div id="polarity">
   <% if @positive_count > @negative_count %>
     <h2>So far, people are feeling positive today!</h2>
@@ -10,7 +12,7 @@
 
 <h2>the week at a glance:</h2>
 
-<div id="polarity-chart"></div>
+<canvas id="polarity-chart" width="600" height="400"></canvas>
 
 <script>
   showPolarityChart(gon.this_past_week);
