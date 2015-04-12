@@ -1,4 +1,6 @@
-function showPastWeek(d) {
+function showPastWeekChart(d) {
+
+  var options = {responsive: false};
 
   var labels = [];
   var points = [];
@@ -25,7 +27,7 @@ function showPastWeek(d) {
       };
 
     var ctx = document.getElementById("line-chart").getContext("2d");
-    var myLineChart = new Chart(ctx).Line(data);
+    var myLineChart = new Chart(ctx).Line(data, options);
 
 }
 
