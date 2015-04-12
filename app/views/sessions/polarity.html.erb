@@ -1,18 +1,19 @@
 <%= include_gon %>
 
+<center>
 <div id="polarity">
   <h2>Between <a href="/polarity/positive"><b><%= @positive_count %> positive tweets</b></a>
   and <a href="/polarity/negative"><b><%= @negative_count %> negative ones</b></a>, </h2>
   <% if @positive_count > @negative_count %>
-    <h2>So far, people are feeling positive today!</h2>
+    <h2>people are feeling <b>positive</b> today!</h2>
   <% elsif @positive_count < @negative_count %>
-    <h2>So far, people are feeling negative today...</h2>
+    <h2>people are feeling <b>negative</b> today...</h2>
   <% else %>
     <h2>People are equally positive AND negative today. Wait, what?</h2>
   <% end %>
 </div>
 
-<h2>the week at a glance:</h2>
+<h3>the week at a glance:</h3>
 
 <canvas id="polarity-chart" width="600" height="400"></canvas>
 
