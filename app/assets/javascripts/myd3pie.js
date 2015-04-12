@@ -31,47 +31,53 @@ function drawPie(tweets){
       "location": "bottom-left"
     },
     "size": {
-      "canvasWidth": 590
+      "canvasHeight": 700,
+      "canvasWidth": 700
     },
     "data": {
       "sortOrder": "value-desc",
       "content": content
     },
     "labels": {
-      "outer": {
-        "pieDistance": 32
-      },
-      "inner": {
-        "hideWhenLessThanPercentage": 3
-      },
-      "mainLabel": {
-        "fontSize": 11
-      },
-      "percentage": {
-        "color": "#ffffff",
-        "decimalPlaces": 0
-      },
-      "value": {
-        "color": "#adadad",
-        "fontSize": 11
-      },
-      "lines": {
-        "enabled": true
-      }
+    "outer": {
+      "hideWhenLessThanPercentage": 1,
+      "pieDistance": 32
     },
-    "effects": {
-      "pullOutSegmentOnClick": {
-        "effect": "linear",
-        "speed": 400,
-        "size": 8
-      }
+    "inner": {
+      "hideWhenLessThanPercentage": 3
     },
-    "misc": {
-      "gradient": {
-        "enabled": true,
-        "percentage": 100
-      }
+    "mainLabel": {
+      "fontSize": 11
     },
-    "callbacks": {}
-  });
+    "percentage": {
+      "color": "#ffffff",
+      "decimalPlaces": 0
+    },
+    "value": {
+      "color": "#adadad",
+      "fontSize": 11
+    },
+    "lines": {
+      "enabled": true
+    }
+  },
+  "effects": {
+    "pullOutSegmentOnClick": {
+      "effect": "linear",
+      "speed": 400,
+      "size": 8
+    }
+  },
+  "misc": {
+    "gradient": {
+      "enabled": true,
+      "percentage": 100
+    }
+  },
+  "callbacks": {
+    "onClickSegment": function(e){
+      window.location.replace('/word/' + e.data.label);
+    } 
+  }
+});
 }
