@@ -14,16 +14,16 @@ height:100%;
 <center>
   <h2>
     <% if @days_count == 0 %>
-      Twitter's feelings from <b>this past day</b>
+      twitter's feelings from <b>this past day</b>
     <% else %>
-      Twitter's feelings from <b>the past <%= @days_count %> days</b>
+      twitter's feelings from <b>the past <%= @days_count %> days</b>
     <% end %>
   </h2>
 </center>
 
 <center>
   <%= form_tag("/cloud/") do %> 
-  Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
+  show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
   <%= submit_tag "go", class: 'btn btn-default btn-sm' %>
   <% end %>
 </center>
