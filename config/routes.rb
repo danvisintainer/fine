@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   post '/list', to: 'sessions#list'
 
   get '/polarity', to: 'sessions#polarity'
+  get '/polarity/:side', to: 'sessions#polarity_show'
 
   get '/word/:word', to: 'sessions#show_word'
   

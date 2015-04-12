@@ -49,4 +49,14 @@ class SessionsController < ApplicationController
     gon.this_past_week = this_past_week.reverse
 
   end
+
+  def polarity_show
+    if params[:side] == 'positive'
+      @tweets = Tweet.where("DATE(created_at) = ?", Date.today).where(polarity: "P")
+    elsif params[:side] == 'negative'
+      @tweets = Tweet.where("DATE(created_at) = ?", Date.today).where(polarity: "N")
+    else
+      redirect_to '/polarity'
+    end
+  end
 end
