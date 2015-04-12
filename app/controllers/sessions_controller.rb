@@ -65,6 +65,8 @@ class SessionsController < ApplicationController
     else
       redirect_to '/polarity'
     end
+
+    @word = params[:side]
   end
 
 
