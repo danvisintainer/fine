@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   get '/cloud/', to: 'sessions#worldwide'
   post '/cloud', to: 'sessions#worldwide'
 
+  get '/pie/', to: 'sessions#pie'
+  post '/pie', to: 'sessions#pie'
+
   get '/list/', to: 'sessions#list'
   post '/list', to: 'sessions#list'
 
