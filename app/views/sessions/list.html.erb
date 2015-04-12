@@ -11,12 +11,12 @@
 <center>
   <%= form_tag("/list/") do %> 
   Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
-  <%= submit_tag "Go" %>
+  <%= submit_tag "go", class: 'btn btn-default btn-sm' %>
   <% end %>
 </center>
 
 <div id="table_container">
-  <table id="list-table">
+  <table id="list-table" class="table table-striped table-hover ">
     <thead>
       <tr>
         <th>feeling</th>
@@ -31,4 +31,3 @@
     <% end -%>
   </table>
 </div>
-
