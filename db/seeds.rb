@@ -37,6 +37,17 @@ class FetchTweets
       a = t.full_text.downcase.gsub(/[^a-z\s]/i, '').split
       next if !a.include?("feel")
       word_index = a.index("feel") + 1
+
+      if !a[word_index + 1].nil?
+        if (a[word_index] == 'kind' && a[word_index + 1] == 'of') ||
+          (a[word_index] == 'sort' && a[word_index + 1] == 'of') ||
+          (a[word_index] == 'a' && a[word_index + 1] == 'little') ||
+          (a[word_index] == 'a' && a[word_index + 1] == 'bit')
+          word_index += 2
+        end
+      end
+
+      next if a[word_index].nil?
       
       while !!(a[word_index] =~ /so\b|very\b|really\b|rly\b|fucking\b|fuckin\b|extremely\b|completely\b|some\b|as\b|more\b|kinda\b|even\b|somewhat\b|way\b|damn\b|fully\b|personally\b|(a bit)\b|\bso+\b|\b[a-z]\b|much\b/i) && word_index <= a.length
         word_index += 1
