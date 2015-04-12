@@ -76,7 +76,13 @@ function drawPie(tweets){
   },
   "callbacks": {
     "onClickSegment": function(e){
-      window.location.replace('/word/' + e.data.label);
+      // window.location.replace('/word/' + e.data.label);
+      $.ajax({
+        url: '/word/' + e.data.label,
+        success: function(r){
+          callModalFromCloud(r, e.data.label);
+        }
+      });
     } 
   }
 });
