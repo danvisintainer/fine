@@ -13,7 +13,7 @@
 <center>
   <%= form_tag("/pie/") do %> 
   Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
-  <%= submit_tag "Go" %>
+  <%= submit_tag "go", class: 'btn btn-default btn-sm' %>
   <% end %>
 </center>
 
