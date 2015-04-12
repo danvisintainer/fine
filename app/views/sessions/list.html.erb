@@ -25,8 +25,8 @@
     </thead>
     <% @tweets.each do |t| %>
       <tr>
-        <td><%= link_to t.first, "/word/#{t.first}" %></td>
-        <td><%= t.last %></td>
+        <td><h4><%= link_to t.first, "/word/#{t.first}" %></td>
+        <td><h4><%= t.last %></td>
       </tr>
     <% end -%>
   </table>
