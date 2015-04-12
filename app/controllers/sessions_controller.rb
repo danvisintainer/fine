@@ -19,7 +19,8 @@ class SessionsController < ApplicationController
       this_past_week << [(Date.today - i).strftime('%a'), Tweet.where("DATE(created_at) = ?", Date.today - i).where(feeling: @word).count]
     end
 
-    gon.this_past_week = this_past_week
+    gon.watch.this_past_week = this_past_week
+    render :layout => false
   end
 
   def list
