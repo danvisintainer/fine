@@ -1,16 +1,14 @@
 <%= include_gon %>
-<center><h1>feeling <%= @word %></h1>
 
-<canvas id="line-chart" width="550" height="250"></canvas>
-
-<script>
-  showPastWeek(gon.this_past_week);
-</script>
-
-<% @word_list.each do |tweet| %>
-  <% begin  %>
-    <% puts "Processing ID: #{tweet.twitter_id}"  %>
-    <%= @client.oembed(tweet.twitter_id).html.html_safe %>
-  <% rescue Twitter::Error::NotFound => error %>
+<table id="word-list-table" class="table table-striped table-hover ">
+  <thead>
+    <td>user</td>
+    <td>tweet</td>
+  </thead>
+  <% @word_list.each do |t| %>
+  <tr>
+    <td><h4><%= t.user %></td>
+    <td><h4><a href="<%= t.uri %>"><%= t.text %></a></td>
+  </tr>
   <% end -%>
-<% end -%>
+</table>
