@@ -1,4 +1,4 @@
-$(function() {
+function drawCloud() {
 var feelings = [];
   
   for (var i in gon.tweets){
@@ -97,7 +97,14 @@ var feelings = [];
       })
       .text(function(d) { return d.text; })
       .on("click", function(d) {
-        window.location.replace('/word/' + d.text);
+        // window.location.replace('/word/' + d.text);
+        // callModalFromCloud(d.text);
+        $.ajax({
+          url: '/word/' + d.text,
+          success: function(r){
+            callModalFromCloud(r, d.text);
+          }
+        });
       });
   }
-});
+};
