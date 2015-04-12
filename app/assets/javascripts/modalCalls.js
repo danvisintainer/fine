@@ -1,5 +1,6 @@
 $(document).ready(function() {
   $("#tweet-list-table").on('click', 'tr', function(e) {
+    e.preventDefault();
     word = $(this).children('td').children('h4').children('a').text();
 
     $.ajax({
