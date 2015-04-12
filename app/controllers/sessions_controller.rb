@@ -29,6 +29,13 @@ class SessionsController < ApplicationController
     @tweets = (Tweet.where("DATE(created_at) >= ?", Date.today - @days_count).group(:feeling).count).sort_by { |k, v| v }.reverse
   end
 
+  def pie
+    params["days_count"] = 0 if params["days_count"].nil?
+    @days_count = params["days_count"].to_i
+
+    gon.tweets = (Tweet.where("DATE(created_at) >= ?", Date.today - @days_count).group(:feeling).count).sort_by { |k, v| v }.reverse
+  end
+
   def polarity
 
     @today_count = Tweet.where("created_at >= ?", Time.zone.now.beginning_of_day).count
@@ -49,4 +56,16 @@ class SessionsController < ApplicationController
     gon.this_past_week = this_past_week.reverse
 
   end
+
+  def polarity_show
+    if params[:side] == 'positive'
+      @tweets = Tweet.where("DATE(created_at) = ?", Date.today).where(polarity: "P")
+    elsif params[:side] == 'negative'
+      @tweets = Tweet.where("DATE(created_at) = ?", Date.today).where(polarity: "N")
+    else
+      redirect_to '/polarity'
+    end
+  end
+
+
 end
