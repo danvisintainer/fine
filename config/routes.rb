@@ -11,6 +11,8 @@ Rails.application.routes.draw do
   get '/list/', to: 'sessions#list'
   post '/list', to: 'sessions#list'
 
+  get '/about/', to: 'sessions#about'
+
   get '/polarity', to: 'sessions#polarity'
   get '/polarity/:side', to: 'sessions#polarity_show'
 
