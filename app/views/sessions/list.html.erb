@@ -1,22 +1,22 @@
 <center>
-  <h2>
+  <h1>
     <% if @days_count == 0 %>
-      Twitter's feelings from this past day
+      twitter's feelings from <b>this past day</b>
     <% else %>
-      Twitter's feelings from the past <%= @days_count %> days
+      twitter's feelings from <b>the past <%= @days_count %> days</b>
     <% end %>
-  </h2>
+  </h1>
 </center>
 
 <center>
   <%= form_tag("/list/") do %> 
-  Show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
-  <%= submit_tag "Go" %>
+  show me the results of the past <%= text_field_tag 'days_count', '', size: 3, maxlength: 3 %> days
+  <%= submit_tag "go", class: 'btn btn-default btn-sm' %>
   <% end %>
 </center>
 
 <div id="table_container">
-  <table id="list-table">
+  <table id="list-table" class="table table-striped table-hover ">
     <thead>
       <tr>
         <th>feeling</th>
@@ -25,10 +25,9 @@
     </thead>
     <% @tweets.each do |t| %>
       <tr>
-        <td><%= link_to t.first, "/word/#{t.first}" %></td>
-        <td><%= t.last %></td>
+        <td><h4><%= link_to t.first, "/word/#{t.first}" %></td>
+        <td><h4><%= t.last %></td>
       </tr>
     <% end -%>
   </table>
 </div>
-
