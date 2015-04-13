@@ -12,6 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require d3.layout.cloud.js
+//= require d3.min.js
 //= require bootstrap
 //= require_tree ../../../vendor/assets/javascripts/.
 //= require_tree .
