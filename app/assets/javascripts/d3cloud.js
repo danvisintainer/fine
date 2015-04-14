@@ -5,6 +5,9 @@ var feelings = [];
     // for (var j = 0; j < gon.tweets[i]; j++){
     //   feelings.push(i);
     // }
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
+<<<<<<< Updated upstream
     feelings.push([i, gon.tweets[i]]);
   }
 
@@ -30,6 +33,28 @@ var feelings = [];
     var fill = d3.scale.category20();
     d3.layout.cloud().size([1900, 600])
     .words(feelings)
+=======
+    feelings.push({"text": i, "size": gon.tweets[i]});
+  }
+
+=======
+    feelings.push({"text": i, "size": gon.tweets[i]});
+  }
+
+>>>>>>> Stashed changes
+=======
+    feelings.push({"text": i, "size": gon.tweets[i]});
+  }
+
+>>>>>>> Stashed changes
+  debugger;
+
+  var fill = d3.scale.category20();
+  d3.layout.cloud().size([window.outerWidth, 1000])
+    .words(feelings.map(function(d) {
+      return {text: d, size: 10 + Math.random() * 90};
+    }))
+>>>>>>> Stashed changes
     .padding(5)
     .timeInterval(10)
     .rotate(function() { return ~~(Math.random() * 2) * 90; })
